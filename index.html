@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengajuan Ubah Jadwal Ujian UT Pontianak</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 700px; background: #fff; margin: 0 auto; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #003366; margin-bottom: 5px; }
+        p.subtitle { text-align: center; color: #666; margin-bottom: 25px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        label.required::after { content: " *"; color: red; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .mk-box { background: #f9f9f9; padding: 15px; border: 1px solid #e1e1e1; border-radius: 6px; margin-bottom: 15px; }
+        .mk-box h4 { margin-top: 0; color: #003366; }
+        button { background: #003366; color: white; border: none; padding: 12px 20px; width: 100%; font-size: 16px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #002244; }
+        #loading { display: none; text-align: center; color: #003366; margin-top: 10px; font-weight: bold; }
+        #success-msg { display: none; background: #d4edda; color: #155724; padding: 15px; border-radius: 4px; text-align: center; margin-top: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Formulir Pengajuan Ubah Jadwal Ujian</h2>
+    <p class="subtitle">UT Pontianak</p>
+
+    <form id="ubahJadwalForm">
+        <div class="form-group">
+            <label class="required">NIM</label>
+            <input type="text" id="nim" required placeholder="Masukkan NIM Anda">
+        </div>
+
+        <div class="form-group">
+            <label class="required">NAMA</label>
+            <input type="text" id="nama" required placeholder="Masukkan Nama Lengkap">
+        </div>
+
+        <div class="form-group">
+            <label class="required">KABUPATEN</label>
+            <input type="text" id="kabupaten" required placeholder="Contoh: Kabupaten Kubu Raya / Kota Pontianak">
+        </div>
+
+        <div class="form-group">
+            <label class="required">NO HP/WA</label>
+            <input type="tel" id="nohp" required placeholder="Contoh: 081234567890">
+        </div>
+
+        <div class="form-group">
+            <label class="required">KABUPATEN UJIAN TERBARU</label>
+            <input type="text" id="kabupatenUjianBaru" required placeholder="Lokasi kabupaten ujian yang diinginkan">
+        </div>
+
+        <hr style="margin: 25px 0; border: 0; border-top: 1px solid #ddd;">
+        <h3>Mata Kuliah yang Diajukan (Maksimal 5)</h3>
+        <p style="font-size: 13px; color: #666;">Mata Kuliah 1 wajib diisi. Mata Kuliah 2 s.d 5 bersifat opsional jika ada.</p>
+
+        <!-- Mata Kuliah 1 (Wajib) -->
+        <div class="mk-box">
+            <h4>Mata Kuliah 1 (Wajib)</h4>
+            <div class="form-group">
+                <label class="required">Nama Matakuliah & Kode MK</label>
+                <input type="text" id="mk1" required placeholder="Contoh: Pengantar Bisnis (EKMA4111)">
+            </div>
+            <div class="form-group">
+                <label class="required">Tanggal Ujian Terbaru</label>
+                <select id="tgl1" required>
+                    <option value="">-- Pilih Tanggal Ujian --</option>
+                    <option value="28/11/2026">28/11/2026</option>
+                    <option value="29/11/2026">29/11/2026</option>
+                    <option value="05/12/2026">05/12/2026</option>
+                    <option value="06/12/2026">06/12/2026</option>
+                    <option value="12/12/2026">12/12/2026</option>
+                    <option value="13/12/2026">13/12/2026</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Mata Kuliah 2 (Opsional) -->
+        <div class="mk-box">
+            <h4>Mata Kuliah 2 (Opsional)</h4>
+            <div class="form-group">
+                <label>Nama Matakuliah & Kode MK</label>
+                <input type="text" id="mk2" placeholder="Contoh: Statistika Ekonomi (ESPA4123)">
+            </div>
+            <div class="form-group">
+                <label>Tanggal Ujian Terbaru</label>
+                <select id="tgl2">
+                    <option value="">-- Pilih Tanggal Ujian --</option>
+                    <option value="28/11/2026">28/11/2026</option>
+                    <option value="29/11/2026">29/11/2026</option>
+                    <option value="05/12/2026">05/12/2026</option>
+                    <option value="06/12/2026">06/12/2026</option>
+                    <option value="12/12/2026">12/12/2026</option>
+                    <option value="13/12/2026">13/12/2026</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Mata Kuliah 3 (Opsional) -->
+        <div class="mk-box">
+            <h4>Mata Kuliah 3 (Opsional)</h4>
+            <div class="form-group">
+                <label>Nama Matakuliah & Kode MK</label>
+                <input type="text" id="mk3" placeholder="Nama Matakuliah & Kode MK">
+            </div>
+            <div class="form-group">
+                <label>Tanggal Ujian Terbaru</label>
+                <select id="tgl3">
+                    <option value="">-- Pilih Tanggal Ujian --</option>
+                    <option value="28/11/2026">28/11/2026</option>
+                    <option value="29/11/2026">29/11/2026</option>
+                    <option value="05/12/2026">05/12/2026</option>
+                    <option value="06/12/2026">06/12/2026</option>
+                    <option value="12/12/2026">12/12/2026</option>
+                    <option value="13/12/2026">13/12/2026</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Mata Kuliah 4 (Opsional) -->
+        <div class="mk-box">
+            <h4>Mata Kuliah 4 (Opsional)</h4>
+            <div class="form-group">
+                <label>Nama Matakuliah & Kode MK</label>
+                <input type="text" id="mk4" placeholder="Nama Matakuliah & Kode MK">
+            </div>
+            <div class="form-group">
+                <label>Tanggal Ujian Terbaru</label>
+                <select id="tgl4">
+                    <option value="">-- Pilih Tanggal Ujian --</option>
+                    <option value="28/11/2026">28/11/2026</option>
+                    <option value="29/11/2026">29/11/2026</option>
+                    <option value="05/12/2026">05/12/2026</option>
+                    <option value="06/12/2026">06/12/2026</option>
+                    <option value="12/12/2026">12/12/2026</option>
+                    <option value="13/12/2026">13/12/2026</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Mata Kuliah 5 (Opsional) -->
+        <div class="mk-box">
+            <h4>Mata Kuliah 5 (Opsional)</h4>
+            <div class="form-group">
+                <label>Nama Matakuliah & Kode MK</label>
+                <input type="text" id="mk5" placeholder="Nama Matakuliah & Kode MK">
+            </div>
+            <div class="form-group">
+                <label>Tanggal Ujian Terbaru</label>
+                <select id="tgl5">
+                    <option value="">-- Pilih Tanggal Ujian --</option>
+                    <option value="28/11/2026">28/11/2026</option>
+                    <option value="29/11/2026">29/11/2026</option>
+                    <option value="05/12/2026">05/12/2026</option>
+                    <option value="06/12/2026">06/12/2026</option>
+                    <option value="12/12/2026">12/12/2026</option>
+                    <option value="13/12/2026">13/12/2026</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" id="submitBtn">Kirim Pengajuan</button>
+        <div id="loading">Sedang mengirim data...</div>
+        <div id="success-msg">Pengajuan berhasil dikirim dan tersimpan otomatis!</div>
+    </form>
+</div>
+
+<script>
+    const scriptURL = https://script.google.com/macros/s/AKfycbyiIaGqJ8qFj73gdQcnd5E-I2fkz2LNCyuLbh6kxnfrhD_a3HGL0Jhh_MbqZHPPIocj/exec; // Ganti dengan URL Web App Apps Script Anda
+
+    const form = document.getElementById('ubahJadwalForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const loading = document.getElementById('loading');
+    const successMsg = document.getElementById('success-msg');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        submitBtn.style.display = 'none';
+        loading.style.display = 'block';
+
+        const requestData = {
+            nim: document.getElementById('nim').value,
+            nama: document.getElementById('nama').value,
+            kabupaten: document.getElementById('kabupaten').value,
+            nohp: document.getElementById('nohp').value,
+            kabupatenUjianBaru: document.getElementById('kabupatenUjianBaru').value,
+            mk1: document.getElementById('mk1').value,
+            tgl1: document.getElementById('tgl1').value,
+            mk2: document.getElementById('mk2').value,
+            tgl2: document.getElementById('tgl2').value,
+            mk3: document.getElementById('mk3').value,
+            tgl3: document.getElementById('tgl3').value,
+            mk4: document.getElementById('mk4').value,
+            tgl4: document.getElementById('tgl4').value,
+            mk5: document.getElementById('mk5').value,
+            tgl5: document.getElementById('tgl5').value
+        };
+
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors', // Diperlukan untuk Google Apps Script Web App
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestData)
+        })
+        .then(() => {
+            loading.style.display = 'none';
+            successMsg.style.display = 'block';
+            form.reset();
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+                submitBtn.style.display = 'block';
+            }, 4000);
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            alert('Terjadi kesalahan saat mengirim data. Silakan coba lagi.');
+            loading.style.display = 'none';
+            submitBtn.style.display = 'block';
+        });
+    });
+</script>
+
+</body>
+</html>
